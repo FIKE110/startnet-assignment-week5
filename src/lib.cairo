@@ -64,7 +64,7 @@ mod HelloStarknet {
         self.total_raised.write(0);
     }
 
-    #[external(v0)]
+    #[abi(embed_v0)]
     impl TokenSaleImpl of super::ITokenSale<ContractState> {
         fn buy_tokens(ref self: ContractState, amount: u256) {
             let caller = get_caller_address();
@@ -88,7 +88,7 @@ mod HelloStarknet {
         }
     }
 
-    #[external(v0)]
+    #[abi(embed_v0)]
     impl UpgradeableImpl of IUpgradeable<ContractState> {
         fn upgrade(ref self: ContractState, new_class_hash: ClassHash) {
             self.ownable.assert_only_owner();
